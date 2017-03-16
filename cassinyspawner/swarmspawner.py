@@ -291,6 +291,8 @@ class SwarmSpawner(Spawner):
 
             if 'name' in user_options:
                 self.server_name = user_options['name']
+            else:
+                self.server_name = 1
 
             if hasattr(self, 'container_spec') and self.container_spec is not None:
                 container_spec = dict(**self.container_spec)
