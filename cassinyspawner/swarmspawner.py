@@ -148,10 +148,10 @@ class SwarmSpawner(Spawner):
         """
         # JupyterHub with multi-server-per-user should pass server_name
         # In the future we can remove this part
+        server_name = 1
         if hasattr(self, 'server_name'):
-            server_name = self.server_name
-        else:
-            server_name = 1
+            if self.server_name:
+                server_name = self.server_name
 
         return "{}-{}-{}".format(self.service_prefix,
                                  self.service_owner,
@@ -291,8 +291,6 @@ class SwarmSpawner(Spawner):
 
             if 'name' in user_options:
                 self.server_name = user_options['name']
-            else:
-                self.server_name = 1
 
             if hasattr(self, 'container_spec') and self.container_spec is not None:
                 container_spec = dict(**self.container_spec)
